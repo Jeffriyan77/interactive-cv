@@ -1,13 +1,11 @@
 {
     "version": 2,
     "builds": [
-    // 1. Build frontend sebagai Static Build
     {
     "src": "frontend/package.json",
     "use": "@vercel/static-build",
     "config": { "distDir": "dist" }
     },
-    // 2. Build backend sebagai Serverless Function
     {
     
     "src": "backend/index.js",
@@ -15,12 +13,10 @@
     }
     ],
     "routes": [
-    // Akses /api/* diarahkan ke fungsi backend
     {
     "src": "/api/(.*)",
     "dest": "backend/index.js"
     },
-    // Semua path lainnya di-serve oleh frontend
     {
     "src": "/(.*)",
     "dest": "frontend/dist/$1"
